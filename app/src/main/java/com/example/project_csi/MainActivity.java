@@ -11,6 +11,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 EditText user,pass;
 Button login,sign_up;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +33,7 @@ Button login,sign_up;
             Intent i=new Intent(MainActivity.this,SecondActivity.class);
             startActivity(i);
         });
+
 
     }
 }
