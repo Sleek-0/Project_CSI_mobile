@@ -1,12 +1,15 @@
 package com.example.project_csi;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 
 public class SecondActivity extends AppCompatActivity {
@@ -31,7 +34,23 @@ NavigationView bottomNavigationView;
                 }
             }
         });
-
-
+        bottomNavigationView.setNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.share:
+                        // Handle share navigation
+                        return true;
+                    case R.id.logout:
+                        // Handle logout navigation
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        });
     }
 }
+
+
+
