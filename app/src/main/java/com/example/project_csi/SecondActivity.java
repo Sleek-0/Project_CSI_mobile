@@ -1,54 +1,46 @@
 package com.example.project_csi;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 
 public class SecondActivity extends AppCompatActivity {
-ImageButton show;
-NavigationView bottomNavigationView;
+    ImageButton show;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
+        final DrawerLayout drawerLayout=findViewById(R.id.drawer_layout);
         show=findViewById(R.id.show_bar);
-        bottomNavigationView = findViewById(R.id.bar);
+        NavigationView navigationView=findViewById(R.id.navigation_view);
+
+
 
 
         show.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Toggle visibility of BottomNavigationView
-                if (bottomNavigationView.getVisibility() == View.VISIBLE) {
-                    bottomNavigationView.setVisibility(View.GONE);
-                } else {
-                    bottomNavigationView.setVisibility(View.VISIBLE);
-                }
+                drawerLayout.openDrawer(GravityCompat.START);
+
             }
         });
-        bottomNavigationView.setNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.share:
-                        // Handle share navigation
-                        return true;
-                    case R.id.logout:
-                        // Handle logout navigation
-                        return true;
-                    default:
-                        return false;
-                }
-            }
-        });
+
+
     }
 }
 
