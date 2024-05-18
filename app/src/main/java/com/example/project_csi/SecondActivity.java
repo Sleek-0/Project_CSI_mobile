@@ -28,7 +28,16 @@ public class SecondActivity extends AppCompatActivity {
         final DrawerLayout drawerLayout=findViewById(R.id.drawer_layout);
         show=findViewById(R.id.show_bar);
         NavigationView navigationView=findViewById(R.id.navigation_view);
-
+        Menu menu = navigationView.getMenu();
+        MenuItem logoutItem = ((Menu) menu).findItem(R.id.logout);
+        logoutItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                // Handle logout action here
+                finish(); // Finish the activity
+                return true; // Indicate that the click has been handled
+            }
+        });
 
 
 

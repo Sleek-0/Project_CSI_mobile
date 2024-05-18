@@ -32,6 +32,8 @@ Button login,sign_up;
         login.setOnClickListener(View->{
             Intent i=new Intent(MainActivity.this,SecondActivity.class);
             startActivity(i);
+            user.setText("");
+            pass.setText("");
         });
 
 
