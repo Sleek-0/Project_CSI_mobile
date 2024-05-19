@@ -6,11 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -20,6 +22,7 @@ import com.google.android.material.navigation.NavigationView;
 
 public class SecondActivity extends AppCompatActivity {
     ImageButton show;
+    Button booknow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,7 @@ public class SecondActivity extends AppCompatActivity {
         setContentView(R.layout.activity_second);
         final DrawerLayout drawerLayout=findViewById(R.id.drawer_layout);
         show=findViewById(R.id.show_bar);
+        booknow=findViewById(R.id.booknow);
         NavigationView navigationView=findViewById(R.id.navigation_view);
         Menu menu = navigationView.getMenu();
         MenuItem logoutItem = ((Menu) menu).findItem(R.id.logout);
@@ -37,6 +41,12 @@ public class SecondActivity extends AppCompatActivity {
                 finish(); // Finish the activity
                 return true; // Indicate that the click has been handled
             }
+        });
+
+        booknow.setOnClickListener(View ->{
+            Intent i=new Intent(SecondActivity.this,BookNow.class);
+            startActivity(i);
+
         });
 
 

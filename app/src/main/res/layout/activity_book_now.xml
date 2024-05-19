@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:background="#fff">
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="33dp"
+        android:src="@drawable/ic_back"
+        android:id="@+id/back"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/appoi"
+        />
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="300dp"
+        android:layout_height="43dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/custom_input"
+        android:drawableStart="@drawable/ic_name"
+        android:drawablePadding="12dp"
+        android:gravity="center_vertical"
+        android:hint=" enter username "
+        android:paddingStart="4dp" />
+
+    <EditText
+        android:id="@+id/phone"
+        android:layout_width="300dp"
+        android:layout_height="43dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/custom_input"
+        android:drawableStart="@drawable/ic_phone"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:hint="enter phone number "
+        android:paddingStart="4dp" />
+    <EditText
+        android:id="@+id/service"
+        android:layout_width="300dp"
+        android:layout_height="43dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/custom_input"
+        android:drawableStart="@drawable/ic_service"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:hint="enter service "
+        android:paddingStart="4dp" />
+    <EditText
+        android:id="@+id/date"
+        android:layout_width="300dp"
+        android:layout_height="43dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/custom_input"
+        android:drawableStart="@drawable/ic_date"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:hint="enter date "
+        android:paddingStart="4dp" />
+    <EditText
+        android:id="@+id/time"
+        android:layout_width="300dp"
+        android:layout_height="43dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/custom_input"
+        android:drawableStart="@drawable/ic_time"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:hint="enter time "
+        android:paddingStart="4dp" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#0884E6"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="120dp"
+        android:text="Book now"
+        android:textSize="25dp"
+        android:id="@+id/book_now"/>
+</LinearLayout>
