@@ -74,6 +74,11 @@ public class SecondActivity extends AppCompatActivity {
             Intent i=new Intent(SecondActivity.this, Services.class);
             startActivity(i);
         });
+        specialist.setOnClickListener(View->{
+            Intent i=new Intent(SecondActivity.this, Specialist.class);
+            startActivity(i);
+
+        });
 
 
 
