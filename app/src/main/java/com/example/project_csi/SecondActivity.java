@@ -21,7 +21,7 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 
 public class SecondActivity extends AppCompatActivity {
-    ImageButton show;
+    ImageButton show,services,specialist;
     Button booknow;
     ImageButton clinichour;
 
@@ -33,6 +33,8 @@ public class SecondActivity extends AppCompatActivity {
         show=findViewById(R.id.show_bar);
         booknow=findViewById(R.id.booknow);
         clinichour=findViewById(R.id.clinichour);
+        services=findViewById(R.id.bbb);
+        specialist=findViewById(R.id.aaa);
         NavigationView navigationView=findViewById(R.id.navigation_view);
         Menu menu = navigationView.getMenu();
         MenuItem logoutItem = ((Menu) menu).findItem(R.id.logout);
@@ -67,6 +69,13 @@ public class SecondActivity extends AppCompatActivity {
             startActivity(i);
 
         });
+
+        services.setOnClickListener(View->{
+            Intent i=new Intent(SecondActivity.this, Services.class);
+            startActivity(i);
+        });
+
+
 
 
     }

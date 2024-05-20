@@ -76,12 +76,14 @@
             <ImageButton
                 android:layout_width="117dp"
                 android:layout_height="170dp"
-                android:src="@drawable/services" />
+                android:src="@drawable/services"
+                android:id="@+id/bbb"/>
 
             <ImageButton
                 android:layout_marginLeft="30dp"
                 android:layout_width="106dp"
                 android:layout_height="153dp"
+                android:id="@+id/aaa"
                 android:src="@drawable/specialist"
                 android:layout_marginTop="18dp" />
 

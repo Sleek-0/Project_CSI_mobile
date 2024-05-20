@@ -15,6 +15,12 @@
         android:theme="@style/Theme.Project_CSI"
         tools:targetApi="31">
         <activity
+            android:name=".Specialist"
+            android:exported="false" />
+        <activity
+            android:name=".Services"
+            android:exported="false" />
+        <activity
             android:name=".CLinicHour"
             android:exported="false" />
         <activity
