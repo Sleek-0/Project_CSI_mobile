@@ -23,6 +23,7 @@ import com.google.android.material.navigation.NavigationView;
 public class SecondActivity extends AppCompatActivity {
     ImageButton show;
     Button booknow;
+    ImageButton clinichour;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,7 @@ public class SecondActivity extends AppCompatActivity {
         final DrawerLayout drawerLayout=findViewById(R.id.drawer_layout);
         show=findViewById(R.id.show_bar);
         booknow=findViewById(R.id.booknow);
+        clinichour=findViewById(R.id.clinichour);
         NavigationView navigationView=findViewById(R.id.navigation_view);
         Menu menu = navigationView.getMenu();
         MenuItem logoutItem = ((Menu) menu).findItem(R.id.logout);
@@ -57,6 +59,13 @@ public class SecondActivity extends AppCompatActivity {
                 drawerLayout.openDrawer(GravityCompat.START);
 
             }
+        });
+
+
+        clinichour.setOnClickListener(View->{
+            Intent i=new Intent(SecondActivity.this,CLinicHour.class);
+            startActivity(i);
+
         });
 
 

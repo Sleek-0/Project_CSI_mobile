@@ -90,7 +90,8 @@
                 android:layout_width="106dp"
                 android:layout_height="153dp"
                 android:src="@drawable/clinichour"
-                android:layout_marginTop="18dp" />
+                android:layout_marginTop="18dp"
+                android:id="@+id/clinichour"/>
 
         </LinearLayout>
 

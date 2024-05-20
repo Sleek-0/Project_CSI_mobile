@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity"
+    tools:context=".BookNow"
     android:background="#fff">
 
     <ImageButton
@@ -65,7 +65,7 @@
         android:drawableStart="@drawable/ic_date"
         android:drawablePadding="10dp"
         android:gravity="center_vertical"
-        android:hint="enter date "
+
         android:paddingStart="4dp" />
     <EditText
         android:id="@+id/time"
@@ -77,7 +77,7 @@
         android:drawableStart="@drawable/ic_time"
         android:drawablePadding="10dp"
         android:gravity="center_vertical"
-        android:hint="enter time "
+
         android:paddingStart="4dp" />
     <Button
         android:layout_width="wrap_content"

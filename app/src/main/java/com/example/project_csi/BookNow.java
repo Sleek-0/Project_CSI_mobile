@@ -1,8 +1,11 @@
 package com.example.project_csi;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -29,6 +32,7 @@ ImageButton back;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_now);
+
         back=findViewById(R.id.back);
         name=findViewById(R.id.name);
         phone=findViewById(R.id.phone);
@@ -36,6 +40,8 @@ ImageButton back;
         date=findViewById(R.id.date);
         time=findViewById(R.id.time);
         book=findViewById(R.id.book_now);
+        date.setText("00/00/2024");
+        time.setText("0:00");
         back.setOnClickListener(View->{
             finish();
         });
@@ -48,6 +54,10 @@ ImageButton back;
 
             if (userName.isEmpty() || userPhone.isEmpty() || userService.isEmpty() || userDate.isEmpty() || userTime.isEmpty()) {
                 Toast.makeText(this, "You have to fill all inputs required", Toast.LENGTH_SHORT).show();
+            } else if (userDate.length() > 10) {
+                Toast.makeText(this, "Invalid date format", Toast.LENGTH_SHORT).show();
+            } else if (userTime.length() > 4) {
+                Toast.makeText(this, "Invalid time format", Toast.LENGTH_SHORT).show();
             } else {
                 // Proceed with the booking process
                 // You can define what happens next, e.g., sending data to a server or saving locally
@@ -65,6 +75,7 @@ ImageButton back;
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        Log.d("BookingResponse", "Response: " + response); // Log the response
                         try {
                             JSONObject jsonResponse = new JSONObject(response);
                             boolean success = jsonResponse.getBoolean("success");
@@ -98,6 +109,5 @@ ImageButton back;
 
         queue.add(postRequest);
     }
-
 
 }

@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Project_CSI"
         tools:targetApi="31">
         <activity
+            android:name=".CLinicHour"
+            android:exported="false" />
+        <activity
             android:name=".BookNow"
             android:exported="false" />
         <activity
