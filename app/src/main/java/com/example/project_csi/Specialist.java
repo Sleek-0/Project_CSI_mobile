@@ -13,7 +13,7 @@ public class Specialist extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_specialist);
-        back=findViewById(R.id.letsback);
+        back=findViewById(R.id.letback);
         back.setOnClickListener(View->{
 
             finish();;
