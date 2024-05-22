@@ -49,6 +49,7 @@ public class Services extends AppCompatActivity {
 
         @Override
         public int getCount() {
+
             return images.length;
         }
 
