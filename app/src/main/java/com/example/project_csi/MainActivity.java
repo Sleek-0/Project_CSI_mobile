@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -24,6 +26,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 EditText user,pass;
 Button login,sign_up;
+ImageButton insta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,7 @@ Button login,sign_up;
         pass=findViewById(R.id.pass);
         login=findViewById(R.id.login);
         sign_up=findViewById(R.id.sign_up);
+        insta=findViewById(R.id.insta);
         sign_up.setOnClickListener(View -> {
             String username = user.getText().toString().trim();
             String password = pass.getText().toString().trim();
@@ -50,6 +54,10 @@ Button login,sign_up;
             checkLogin(username, password);
             user.setText("");
             pass.setText("");
+        });
+        insta.setOnClickListener(View ->{
+            WebView webView=findViewById(R.id.webview);
+            webView.loadUrl("https://www.instagram.com/medi_careclinic?igsh=cXcyZDM2bGxkM2oz");
         });
 
 
