@@ -4,6 +4,7 @@ package com.example.project_csi;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,20 +19,23 @@ import org.json.JSONObject;
 public class SpecialistInf extends AppCompatActivity {
 
     TextView details;
+    ImageButton back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_specialist_inf);
+        back=findViewById(R.id.letsback);
+        back.setOnClickListener(View->{
+            finish();
+        });
 
         details = findViewById(R.id.details); // Assuming you have a TextView with id "details"
-
         Intent i = getIntent();
         int id = i.getIntExtra("id", 0);
-
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        String url = "https://hassanshadad.000webhostapp.com/getSpecialist.php?id=" + id;
+        String url = "https://hassanshadad.000webhostapp.com/getOnespecialist.php?ali&id="+1;
 
         JsonArrayRequest request = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
             @Override
@@ -39,10 +43,10 @@ public class SpecialistInf extends AppCompatActivity {
                 try {
                     JSONObject row = response.getJSONObject(0);
                     int id = row.getInt("id");
-                    String phone = row.getString("phone");
+                    String phone = row.getString("phone_number");
                     String information = row.getString("information");
-                    sp sp = new sp(id, phone, information);
-                    details.setText(sp.toString());
+
+                    details.setText("phone number:"+phone);
                 } catch (Exception ex) {
                     Toast.makeText(SpecialistInf.this, ex.toString(), Toast.LENGTH_SHORT).show();
                 }
@@ -62,18 +66,6 @@ class sp {
         this.id = id;
         this.phone = phone;
         this.information = information;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public String getInformation() {
-        return information;
     }
 
     @Override

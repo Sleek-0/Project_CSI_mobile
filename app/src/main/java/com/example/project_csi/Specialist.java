@@ -45,8 +45,8 @@ public class Specialist extends AppCompatActivity {
         ls.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent=new Intent(Specialist.this,SpecialistInf.class);
-                intent.putExtra("id",i);
+                Intent intent=new Intent(Specialist.this, SpecialistInf.class);
+                intent.putExtra("id", i + 1); // Adding 1 to position i
                 startActivity(intent);
             }
         });
