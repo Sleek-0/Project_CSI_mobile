@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Project_CSI"
         tools:targetApi="31">
         <activity
+            android:name=".SpecialistInf"
+            android:exported="false" />
+        <activity
             android:name=".Specialist"
             android:exported="false" />
         <activity
