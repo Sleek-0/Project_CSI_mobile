@@ -17,7 +17,7 @@ import android.widget.ListView;
 public class Specialist extends AppCompatActivity {
     ImageButton back;
     ListView ls;
-    SQLiteDatabase db;
+
 
     int[]images= {
             R.drawable.andrew,
@@ -37,8 +37,7 @@ public class Specialist extends AppCompatActivity {
 
             finish();;
         });
-        db=openOrCreateDatabase("specialist",MODE_PRIVATE,null);
-        db.execSQL("CREATE TABLE IF NOT EXISTS specialist( id INTEGER  PRIMARY KEY AUTOINCREMENT,phoneNb TEXT , information TEXT) ");
+
 
         ImageAdapter imageAdapter=new ImageAdapter(this,images);
         ls.setAdapter(imageAdapter);
