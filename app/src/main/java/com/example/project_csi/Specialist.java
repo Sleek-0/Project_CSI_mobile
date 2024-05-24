@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,15 +19,18 @@ import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Specialist extends AppCompatActivity {
     ImageButton back;
     ListView ls;
+
 
 
     int[]images= {
@@ -53,39 +57,52 @@ public class Specialist extends AppCompatActivity {
         ls.setAdapter(imageAdapter);
         RequestQueue queue = Volley.newRequestQueue(this);
         String url="https://hassanshadad.000webhostapp.com/getSpecialist.php";
+
         JsonArrayRequest request=new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 int[] productID=new int[response.length()];
-                for (int i = 0;i < response.length();i++) {
-                    try {
-                        JSONObject row = response.getJSONObject(i);
-                        int id = row.getInt("id");
-                        productID[i] = id;
+                try {
+                    for (int i = 0; i < response.length(); i++) {
+                        JSONObject specialistObject = response.getJSONObject(i);
+                        int id=specialistObject.getInt("id");
+                        String phoneNumber = specialistObject.getString("phone_number");
+                        String information = specialistObject.getString("information");
+                        productID[i]=id;
 
-                        ls.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                                Intent intent = new Intent(Specialist.this,SpecialistInf.class);
-                                intent.putExtra("id", productID[i]);
-                                startActivity(intent); // Start the activity here
-                            }
-                        });
+                        // Now you can use phoneNumber and information as needed
                     }
-                    catch (Exception ex) {
-                        Toast.makeText(Specialist.this, "error", Toast.LENGTH_SHORT).show();
-                    }
+                    // Notify adapter after looping through all items
+                    imageAdapter.notifyDataSetChanged();
+                    ls.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Intent i=new Intent(Specialist.this,specialistInf.class);
+                            i.putExtra("id",productID[position]);
+                            startActivity(i);
+                        }
+                    });
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(Specialist.this, "Error parsing JSON", Toast.LENGTH_SHORT).show();
                 }
-                imageAdapter.notifyDataSetChanged();
+
             }
-        }, null);
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Handle error here
+                Toast.makeText(Specialist.this, "Error fetching data: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         queue.add(request);
 
-
+    }
     }
 
-}
+
 class ImageAdapter extends BaseAdapter {
     private Context context;
     private int[] images;

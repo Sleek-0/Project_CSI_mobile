@@ -35,7 +35,8 @@ public class SpecialistInf extends AppCompatActivity {
         int id = i.getIntExtra("id", 0);
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        String url = "https://hassanshadad.000webhostapp.com/getOnespecialist.php?ali&id="+id;
+        String url = "https://hassanshadad.000webhostapp.com/getOnespecialist.php?id=" + id;
+
 
         JsonArrayRequest request = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
             @Override
