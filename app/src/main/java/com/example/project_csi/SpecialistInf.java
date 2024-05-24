@@ -8,12 +8,16 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class SpecialistInf extends AppCompatActivity {
@@ -35,42 +39,48 @@ public class SpecialistInf extends AppCompatActivity {
         int id = i.getIntExtra("id", 0);
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        String url = "https://hassanshadad.000webhostapp.com/getOnespecialist.php?id=" + id;
+        String url = "https://hassanshadad.000webhostapp.com/getOnespecialist.php?id="+id;
 
-
-        JsonArrayRequest request = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            int id = response.getInt("id");
+                            String phone_number = response.getString("phone_number");
+                            String information = response.getString("information");
+                            sp sp = new sp(id, phone_number, information);
+                            details.setText(sp.toString());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(SpecialistInf.this, "Error parsing JSON", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
             @Override
-            public void onResponse(JSONArray response) {
-                try {
-                    JSONObject row = response.getJSONObject(0);
-                    int id = row.getInt("id");
-                    String phone = row.getString("phone_number");
-                    String information = row.getString("information");
-
-                    details.setText("phone number:"+phone);
-                } catch (Exception ex) {
-                    Toast.makeText(SpecialistInf.this, ex.toString(), Toast.LENGTH_SHORT).show();
-                }
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(SpecialistInf.this, "Error fetching data: " + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
-        }, null);
+        });
+
 
         queue.add(request);
     }
-}
 
-class sp {
-    private int id;
-    private String phone;
-    private String information;
+    class sp {
+        private int id;
+        private String phone;
+        private String information;
 
-    public sp(int id, String phone, String information) {
-        this.id = id;
-        this.phone = phone;
-        this.information = information;
-    }
+        public sp(int id, String phone, String information) {
+            this.id = id;
+            this.phone = phone;
+            this.information = information;
+        }
 
-    @Override
-    public String toString() {
-        return "ID: " + id + "\nPhone: " + phone + "\nInformation: " + information;
+        @Override
+        public String toString() {
+            return  "\nPhone: " + phone + "\nInformation: " + information;
+        }
     }
 }

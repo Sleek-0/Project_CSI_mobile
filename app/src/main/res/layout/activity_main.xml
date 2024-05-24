@@ -26,7 +26,7 @@
         android:drawableStart="@drawable/ic_email"
         android:drawablePadding="12dp"
         android:gravity="center_vertical"
-        android:hint="enter email"
+        android:hint="enter username"
         android:paddingStart="4dp" />
 
     <EditText
