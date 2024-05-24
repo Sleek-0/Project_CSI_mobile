@@ -14,6 +14,15 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class Specialist extends AppCompatActivity {
     ImageButton back;
@@ -42,14 +51,38 @@ public class Specialist extends AppCompatActivity {
 
         ImageAdapter imageAdapter=new ImageAdapter(this,images);
         ls.setAdapter(imageAdapter);
-        ls.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url="https://hassanshadad.000webhostapp.com/getSpecialist.php";
+        JsonArrayRequest request=new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent=new Intent(Specialist.this, SpecialistInf.class);
-                intent.putExtra("id", i + 1); // Adding 1 to position i
-                startActivity(intent);
+            public void onResponse(JSONArray response) {
+                int[] productID=new int[response.length()];
+                for (int i = 0;i < response.length();i++) {
+                    try {
+                        JSONObject row = response.getJSONObject(i);
+                        int id = row.getInt("id");
+                        productID[i] = id;
+
+                        ls.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                Intent intent = new Intent(Specialist.this,SpecialistInf.class);
+                                intent.putExtra("id", productID[i]);
+                                startActivity(intent); // Start the activity here
+                            }
+                        });
+                    }
+                    catch (Exception ex) {
+                        Toast.makeText(Specialist.this, "error", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                imageAdapter.notifyDataSetChanged();
             }
-        });
+        }, null);
+
+        queue.add(request);
+
+
     }
 
 }
